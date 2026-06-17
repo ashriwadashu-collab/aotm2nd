@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #F8F4FF;
+    }
+
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        width: 0;
+        height: 5px;
+        left: 0;
+        z-index: 9999;
+        background: cyan;
+    }
+
+    #topBtn {
+
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+
+        width: 60px;
+        height: 60px;
+
+        border: none;
+        border-radius: 50%;
+
+        background: #000;
+        color: white;
+
+        font-size: 28px;
+        cursor: pointer;
+
+        box-shadow: 0px 0px 15px gray;
+
+        display: none;
+
+        transition: 0.4s;
+
+    }
+
+    #topBtn:hover {
+
+        transform: scale(1.1);
+        background: #ff004c;
+
+    }
+
+    .dark {
+        background: #020617;
+        color: white;
+    }
+
+    .dark header {
+        background: white;
+    }
+
+    .dark .logo {
+        color: black;
+    }
+
+    .dark #menu a {
+        color: black;
+    }
+
+
+    .dark #system {
+        color: black;
+    }
+
+
+    #system {
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: white;
+    }
+
+    .cursor {
+        width: 20px;
+        height: 20px;
+        background: cyan;
+        border-radius: 50%;
+        position: absolute;
+        pointer-events: none;
+        box-shadow: 0 0 20px cyan;
+        transition: 0.1s;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;
+        background: #1E293B;
+        color: white;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+
+    #btn {
+        background: none;
+        display: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 15px;
+    }
+
+    .slider {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        width: 90%;
+        margin: 120px auto 0;
+    }
+
+    .slider img {
+        width: 650px;
+        height: 460px;
+        object-fit: cover;
+        flex-shrink: 0;
+        border-radius: 20px;
+    }
+
+    .not h1 {
+        font-size: 50px;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+        color: blue;
+    }
+
+    .not p {
+        font-size: 18px;
+        text-transform: capitalize;
+        line-height: 35px;
+    }
+
+    .part1 {
+        background-color: #e7f3fc;
+    }
+
+
+    .part1 h1 {
+        margin-top: 50px;
+        text-align: center;
+        padding-bottom: 10px;
+        text-transform: capitalize;
+        padding-top: 10px;
+        font-size: 35px;
+        color: blue;
+    }
+
+    .part1 p {
+        text-align: center;
+        text-transform: capitalize;
+        line-height: 35px;
+        padding-bottom: 20px;
+    }
+
+    .part1 h4 {
+        margin-left: 280px;
+        text-transform: capitalize;
+        font-size: 30px;
+        padding-bottom: 10px;
+        color: blue;
+    }
+
+    .part1 ol {
+        margin-left: 300px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+
+
+    .box {
+        display: flex;
+        align-items: center;
+        gap: 250px;
+        padding: 20px 140px;
+        margin-bottom: 60px;
+    }
+
+    .box img {
+        width: 600px;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .text {
+        flex: 1;
+    }
+
+
+    .nich2 {
+        width: 340px;
+        height: 450px;
+        border: 1px solid rgb(196, 193, 193);
+        border-radius: 10px;
+        background: white;
+        margin: auto;
+        display: block;
+        margin-top: 80px;
+        object-fit: cover;
+        overflow: hidden;
+        margin-bottom: 50px;
+    }
+
+    .nich2 img {
+        width: 100%;
+        height: 280px;
+        margin: auto;
+        display: block;
+        align-items: center;
+        object-fit: cover;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+
+    .nicha {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 20px 40px;
+    }
+
+    .nicha h1 {
+        padding-top: 25px;
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 25px;
+    }
+
+    .nicha p {
+        padding-top: 10px;
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 15px;
+    }
+
+    footer {
+        background: #1E293B;
+        color: #CBD5E1;
+    }
+
+    .dark footer {
+        background: #020617;
+        color: #CBD5E1;
+    }
+
+    .hl15 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 20px 80px;
+    }
+
+    .hl16 {
+        margin-left: 50px;
+    }
+
+    .hl16 h1 {
+        color: orange;
+        text-transform: capitalize;
+        font-family: 'Poppins', sans-serif;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        line-height: 20px;
+    }
+
+    .hl16 p {
+        text-transform: capitalize;
+        color: white;
+        margin-top: 20px;
+    }
+
+    .text h1 {
+        text-transform: capitalize;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .text p {
+        text-transform: capitalize;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+
+
+
+
+
+
+
+
+    @media(max-width:768px) {
+
+
+        #btn {
+            display: block;
+        }
+
+        .menu {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: black;
+            width: 50%;
+            flex-direction: column;
+            overflow: hidden;
+            transition: 0.5s;
+            text-align: center;
+            max-height: 0;
+        }
+
+        .menu a {
+            padding: 20px;
+            border-top: 1px solid black;
+        }
+
+        .dark #btn {
+            color: black;
+        }
+
+        .menu.show {
+            max-height: 500px;
+        }
+
+
+        .menu nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark .menu {
+            background: white;
+        }
+
+        .dark #menu a {
+            color: black;
+        }
+
+
+        .slider img {
+            width: 100%;
+            height: 500px;
+        }
+
+        .slider {
+            flex-direction: column;
+            width: 95%;
+        }
+
+
+
+        .not h1 {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .not p {
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+        }
+
+        .part1 h1 {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .part1 p {
+            text-align: center;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+
+
+
+        .part1 h4,
+        .part1 ol {
+            margin-left: 0;
+            text-align: center;
+        }
+
+
+        .box {
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .box img {
+            width: 100%;
+            height: 400px;
+        }
+
+        .text h1 {
+            font-size: 25px;
+        }
+
+        .text p {
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+
+
+
+        .nicha {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .nich img {
+            margin: auto;
+            display: block;
+        }
+
+
+        .hl15 {
+            grid-template-columns: 1fr;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hl16 {
+            margin-left: 0;
+        }
+
+        .hl16 h1 {
+            line-height: normal;
+        }
+    }
+</style>
+<header>
+
+
+    <div class="logo">
+        <img src="images/2ndphoto.jpg">
+    </div>
+
+    <div id="btn">☰</div>
+
+    <div class="menu" id="menu">
+
+
+        <nav>
+            <a href="aotm1site1page.html">animation</a>
+            <a href="aotm1site2page.html">2d animation</a>
+            <a href="aotm1site3page.html">3d animation</a>
+            <a href="aotm1site4page.html">motion graphic</a>
+            <a href="aotm1site5page.html">vfx</a>
+            <a href="aotm1site6page.html"> stop motion animation</a>
+        </nav>
+    </div>
+
+    <button id="system">☀︎</button>
+</header>
+
+<body>
+    <div class="progress-bar">
+    </div>
+    </div>
+
+    <div class="cursor">
+    </div>
+    </div>
+
+    <button id="topBtn">↑</button>
+
+
+    <div class="slider">
+        <img id="slider" src="images/aotm3.jpg">
+        <div class="not">
+            <h1>what is animation</h1>
+            <p>Animation is the art of creating the illusion of movement by displaying a series of images in sequence.
+                It is widely used in cartoons, movies, video games, and websites to make content more attractive and
+                engaging. Each image, called a frame, is slightly different from the previous one. When these frames are
+                shown quickly, they appear as smooth motion. Animation helps bring characters, objects, and ideas to
+                life. It is used for entertainment, education, and advertising purposes. Modern animation can be created
+                using both 2D and 3D computer software.</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="part1">
+        <h1>12 principal of animation</h1>
+        <p>When we think of animation, our mind immediately goes to Disney movies. They have been an integral part
+            of <br>our childhood and hold a special place in the hearts of many of us. Their captivating animations
+            and<br>
+            fairytale stories have made our childhood memorable. Despite being founded a century<br> ago, Disney still
+            manages to charm people of all ages with their timeless creations.</p>
+        <h4>12 Principles of Animation are</h4>
+        <ol>
+            <li>Squash and Stretch</li>
+            <li>Anticipation</li>
+            <li>Staging</li>
+            <li>Straight Ahead Action and Pose-to-Posev</li>
+            <li>Follow Through and Overlapping Action</li>
+            <li>Slow In and Slow Out</li>
+            <li>Arcs</li>
+            <li>Secondary Action</li>
+            <li>Timing</li>
+            <li>Exaggeration</li>
+            <li>Solid Drawing</li>
+            <li>Appeal</li>
+        </ol>
+    </div>
+    </div>
+
+
+
+    <div id="container">
+    </div>
+    </div>
+
+    <div class="nicha">
+        <div class="nich2">
+            <a href="sasta1.html">
+                <img src="images/s5.jpg">
+            </a>
+            <h1>2d animation</h1>
+            <p>2D Animation: Creating movement in a 2D space using images and characters.</p>
+        </div>
+
+        <div class="nich2">
+            <img src="images/chat4.png">
+            <h1>3d animation</h1>
+            <p>3D Animation: Creating movement in a three-dimensional digital environment.</p>
+        </div>
+
+
+        <div class="nich2">
+            <img src="images/mot3.png">
+            <h1>motion graphic</h1>
+            <p>Motion Graphics: Creating animated text, shapes, and graphics to communicate ideas visually.</p>
+        </div>
+
+        <div class="nich2">
+            <img src="images/img2.png">
+            <h1>Stop Motion</h1>
+            <p>Stop Motion: Creating animation by moving objects slightly and capturing them frame by frame.</p>
+        </div>
+    </div>
+
+
+    <footer>
+
+
+        <div class="hl15">
+            <div class="hl16">
+                <h1>animation world</h1>
+                <hr>
+                <h3>An educational website to learn animation types, principles and<br> modern techniques in an easy and
+                    visual way.</h3>
+            </div>
+
+            <div class="hl16">
+                <h1>Quick Links</h1>
+                <hr>
+                <p>animation</p>
+                <p>2D Animation</p>
+                <p>3D Animation</p>
+                <p>motion graphic</p>
+                <p>Stop Motion graphic</p>
+                <p>VFX</p>
+            </div>
+
+
+            <div class="hl16">
+                <h1>contact</h1>
+                <hr>
+                <p>📧 animationworld@gmail.com</p>
+
+                <p>📞 +91 87092 42599</p>
+
+                <p>📍 Delhi, India</p>
+            </div>
+        </div>
+
+
+    </footer>
+
+</body>
+
+
+<script>
+    let images = [
+        "images/sas.png",
+        "images/ap1p.png",
+        "images/ap2p.png",
+        "images/a2p3.jpg",
+        "images/a2p5.png",
+        "images/a2p6.jpeg",
+        "images/arcs.png",
+        "images/web2.jpg",
+        "images/timing.png",
+        "images/web2.jpg",
+        "images/solid.png",
+        "images/web3.jpg"
+    ];
+
+    let texts = [
+        "Squash and Stretch",
+        "Anticipation",
+        "Staging",
+        "Straight Ahead Action and Pose-to-Posev",
+        "Follow Through and Overlapping Action",
+        "Slow In and Slow Out",
+        "Arcs",
+        "Secondary Action",
+        "Timing",
+        "Exaggeration",
+        "Solid Drawing",
+        "Appeal"
+    ];
+
+
+
+    let descriptions = [
+        "This gives objects weight and flexibility. When an object hits the ground, it squashes; as it speeds up, it stretches.",
+        "A small movement that prepares the audience for a major action. It tells the viewer what is about to happen.",
+        "The presentation of an idea so that it is completely clear. It’s about directing the audience’s attention to what is most important in the frame.",
+        "Straight Ahead: Animating frame-by-frame from start to finish. Great for unpredictable movements like fire, water, or explosions",
+        "When a character/object stops, not everything stops at the exact same time.",
+        "In Digital/CSS Terms: This is your ease-in-out timing function. More keyframes/frames near the beginning and end of an action make it look smooth and natural, rather than robotic.",
+        "Most natural actions—like a swinging arm, a throwing motion, or a bouncing ball—follow a curved path (an arc), rather than a stiff straight line. Arcs make motion look organic.",
+        "An additional action that supports and enhances the main action without distracting from it.",
+        "The number of frames or the duration assigned to an action.",
+        "Pushing movements, expressions, or shapes beyond reality to make them feel more real and dynamic. If a motion is too true to life, it can look dull on screen.",
+        "Giving your design a sense of three-dimensional space, volume, and balance. Even in 2D animation or flat UI design, elements should feel like they have weight and depth.",
+        "The charisma of the animation. Just like a good logo layout or color palette captures attention, the motion itself should be pleasing, clear, and engaging to watch."
+    ];
+
+
+
+    let output = "";
+
+    for (let i = 0; i < images.length; i++) {
+
+        output += `
+    <div class="box">
+        <img src="${images[i]}">
+
+        <div class="text">
+            <h1>${texts[i]}</h1>
+            <p>${descriptions[i]}</p>
+        </div>
+    </div>
+    `
+    }
+
+    document.getElementById("container").innerHTML = output;
+
+</script>
+
+<script>
+
+    var sliderImages = [
+        "images/s5.jpg",
+        "images/chat4.png",
+        "images/web3.jpg",
+        "images/web4.jpg"
+    ];
+
+    var current = 0
+
+    setInterval(function () {
+
+        current++;
+
+        if (current >= sliderImages.length) {
+            current = 0
+        }
+
+        document.getElementById("slider").src = sliderImages[current]
+
+    }, 2000);
+
+</script>
+
+<script>
+
+
+    var btn = document.getElementById("btn")
+
+    var menu = document.getElementById("menu")
+
+    btn.onclick = function () {
+
+        menu.classList.toggle("show")
+    }
+</script>
+
+<script>
+    var btn1 = document.getElementById("topBtn")
+
+    window.onscroll = function () {
+
+        if (window.scrollY > 200) {
+            btn1.style.display = "block"
+        }
+        else {
+            btn1.style.display = "none"
+        }
+    }
+
+    btn1.onclick = function () {
+
+        window.scroll({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+
+</script>
+
+<script>
+    var b = document.getElementById("system")
+
+    b.onclick = function () {
+        document.body.classList.toggle("dark")
+
+        if (document.body.classList.contains("dark")) {
+            b.innerHTML = "☾"
+        }
+        else {
+            b.innerHTML = "☀︎"
+        }
+    }
+</script>
+
+<script>
+
+    var cursor = document.querySelector(".cursor")
+
+    document.addEventListener("mousemove", function (e) {
+        cursor.style.left = e.pageX + "px"
+        cursor.style.top = e.pageY + "px"
+    })
+
+
+</script>
+
+<script>
+
+    window.addEventListener("scroll", function () {
+        let p = (scrollY / (document.body.scrollHeight - innerHeight)) * 100;
+        document.querySelector(".progress-bar").style.width = p + "%";
+    });
+</script>
+
+</html>
