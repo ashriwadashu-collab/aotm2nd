@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Animating</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<header>
+
+
+    <div class="logo">
+        <img src="images/2ndphoto.jpg">
+    </div>
+
+    <div id="btn">☰</div>
+
+    <div class="menu" id="menu">
+
+
+        <nav>
+            <a href="index.html">animation</a>
+            <a href="aotm1site2page.html">2d animation</a>
+            <a href="aotm1site3page.html">3d animation</a>
+            <a href="aotm1site4page.html">motion graphic</a>
+            <a href="aotm1site5page.html">vfx</a>
+            <a href="aotm1site6page.html"> stop motion animation</a>
+        </nav>
+    </div>
+
+    <button id="system">☀︎</button>
+</header>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+      body {
+        background: #F8F4FF;
+    }
+
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        width: 0;
+        height: 5px;
+        left: 0;
+        z-index: 9999;
+        background: cyan;
+    }
+
+    .cursor {
+        width: 20px;
+        height: 20px;
+        background: cyan;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        box-shadow: 0 0 20px cyan;
+        transition: 0.1s;
+        z-index: 9999;
+    }
+
+
+
+    .dark {
+        background: #020617;
+        color: white;
+    }
+
+    .dark header {
+        background: white;
+    }
+
+    .dark .logo {
+        color: black;
+    }
+
+    .dark #menu a {
+        color: black;
+    }
+
+
+    .dark #system {
+        color: black;
+    }
+
+    #system {
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: white;
+    }
+
+    #system {
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: white;
+    }
+
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;
+        background: #1E293B;
+        color: white;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        z-index: 9999;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+
+    #btn {
+        background: none;
+        display: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 15px;
+    }
+
+    @keyframes runbanner {
+        10% {
+            left: 0%;
+        }
+
+        20% {
+            left: -19%;
+        }
+
+        30% {
+            left: -19%;
+        }
+
+        40% {
+            left: -38%;
+        }
+
+        50% {
+            left: -38%;
+        }
+
+        60% {
+            left: -57%;
+        }
+
+        70% {
+            left: -57%;
+        }
+
+        80% {
+            left: -76%;
+        }
+
+        90% {
+            left: -76%;
+        }
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    #mask {
+        width: 100%;
+        height: auto;
+        margin: auto;
+        overflow-x: hidden;
+        margin-bottom: 50px;
+        object-fit: cover;
+        padding-top: 78px;
+    }
+
+    .hlo {
+        width: 527%;
+        height: 600px;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    .pic {
+        width: 19%;
+        height: 100%;
+        position: relative;
+        left: 0%;
+        animation: runbanner 55s linear infinite alternate;
+        overflow: hidden;
+        //object-fit: cover;
+
+    }
+
+    #topBtn {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+
+        height: 60px;
+        width: 60px;
+
+        background: darkblue;
+        color: white;
+        border: none;
+
+        border-radius: 50%;
+        font-size: 30px;
+        cursor: pointer;
+
+        box-shadow: 0px 0px 15px gray;
+
+        display: none;
+
+        transition: 0.4s;
+
+
+    }
+
+    .hl1 {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .hl1 h2 {
+        font-size: 40px;
+        font-family: 'Poppins', sans-serif;
+        color: brown;
+        text-transform: capitalize;
+    }
+
+    .hl2 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 100px;
+        margin: 40px;
+    }
+
+    .hl3 img {
+        width: 450px;
+        border-radius: 20px;
+        height: 380px;
+    }
+
+    .hl4 h3 {
+        width: 500px;
+        font-size: 20px;
+        line-height: 50px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .hl5 h1 {
+        text-align: center;
+        margin-top: 100px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 40px;
+    }
+
+    .hl6 h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 40px;
+    }
+
+    .hl7 h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 40px;
+    }
+
+    .box {
+        width: 350px;
+        border: 1px solid rgb(196, 193, 193);
+        padding: 10px;
+        border-radius: 8px;
+        background: white;
+        margin: auto;
+        display: block;
+        //box-shadow: 0 0 2px gray;
+        height: 350px;
+    }
+
+    .box img {
+        width: 100%;
+        height: 230px;
+        border-radius: 10px;
+        margin: auto;
+        display: block;
+        align-items: center;
+    }
+
+    .box0 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 20px 100px;
+    }
+
+    .box h2 {
+        text-align: center;
+        padding-top: 30px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 22px;
+        color: #020617;
+    }
+
+    .box h3 {
+        text-align: center;
+        padding-top: 20px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        color: rgb(2, 2, 2);
+    }
+
+    .hl8 h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 40px;
+    }
+
+    .hl9 h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 40px;
+    }
+
+    .hl10 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 20px 100px;
+        gap: 10px;
+    }
+
+    .hl11 img {
+        width: 300px;
+        height: 300px;
+        margin: auto;
+        display: block;
+    }
+
+    .hl11 h5 {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+
+    .hl12 h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 30px;
+    }
+
+    .hl13 {
+        margin-top: 30px;
+    }
+
+    .hl13 h1 {
+        font-size: 15px;
+        font-family: 'Inter', sans-serif;
+        margin-left: 20px;
+        margin-top: 10px;
+        color: rgb(55, 55, 55);
+    }
+
+    .hl14 h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 40px;
+    }
+
+    footer {
+        background: #1E293B;
+        color: #CBD5E1;
+    }
+
+    .dark footer {
+        background: #020617;
+        color: #CBD5E1;
+    }
+
+    .hl15 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 20px 80px;
+    }
+
+    .hl16 {
+        margin-left: 50px;
+    }
+
+    .hl16 h1 {
+        color: orange;
+        text-transform: capitalize;
+        font-family: 'Poppins', sans-serif;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        line-height: 20px;
+    }
+
+    .hl16 p {
+        text-transform: capitalize;
+        color: white;
+        margin-top: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+
+        #btn {
+            display: block;
+        }
+
+        .menu {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: black;
+            width: 50%;
+            flex-direction: column;
+            overflow: hidden;
+            transition: 0.5s;
+            text-align: center;
+            max-height: 0;
+        }
+
+        .menu a {
+            padding: 20px;
+            border-top: 1px solid black;
+        }
+
+        .dark #btn {
+            color: black;
+        }
+
+        .menu.show {
+            max-height: 500px;
+        }
+
+
+        .menu nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark .menu {
+            background: white;
+        }
+
+        .dark #menu a {
+            color: black;
+        }
+
+        #mask {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .hl1 h2 {
+            text-align: center;
+        }
+
+        .hl2 {
+            flex-direction: column;
+        }
+
+        .hl3 img {
+            margin: auto;
+            display: block;
+        }
+
+        .hl4 h3 {
+            text-align: center;
+            width: 400px;
+            margin-top: 30px;
+        }
+
+        .hl6 h1 {
+            font-size: 30px;
+        }
+
+        .box0 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .box img {
+            margin: auto;
+            display: block;
+        }
+
+        .hl9 h1 {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .hl10 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 40px;
+            padding: 20px;
+        }
+
+        footer {
+            flex-direction: column;
+            text-align: center;
+            margin: auto;
+            display: block;
+        }
+
+        .hl15 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 40px;
+            //padding:20px;
+        }
+
+        .hl16 h1 {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .hl16 p {
+            font-size: 20px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .hl16 h3 {
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            padding-top: 15px;
+        }
+
+    }
+</style>
+
+<body>
+
+    <div class="progress-bar">
+    </div>
+    </div>
+
+
+    <div class="cursor">
+    </div>
+    </div>
+
+    <button id="topBtn">↑</button>
+
+
+
+    <div id="mask">
+        <div class="hlo">
+            <img src="images/chat3.png" class="pic">
+            <img src="images/2d2.jpg" class="pic">
+            <img src="images/2d3.jpg" class="pic">
+            <img src="images/2d7.jpg" class="pic">
+            <img src="images/2d8.jpg" class="pic">
+        </div>
+    </div>
+
+    <div class="hl1">
+        <h2>what is 2d animation</h2>
+    </div>
+    </div>
+
+    <div class="hl2">
+        <div class="hl3">
+            <img src="images/chat3.png">
+        </div>
+        <div class="hl4">
+            <h3>2D Animation is a technique where characters, objects, and backgrounds are created in a flat,
+                two-dimensional space (height and width). Movement is shown by displaying a sequence of drawings or
+                images one after another.</h3>
+        </div>
+    </div>
+    </div>
+
+    <div class="hl5">
+        <h1>history of animaation</h1>
+    </div>
+    </div>
+
+    <div class="hl2">
+        <div class="hl3">
+            <img src="images/hist.jpg">
+        </div>
+        <div class="hl4">
+            <h3>2D animation started in the early 1900s with hand-drawn frames. Disney and Warner Bros popularized it in
+                cartoons. With computers, digital 2D animation became faster and more efficient.</h3>
+        </div>
+    </div>
+    </div>
+
+    <div class="hl6">
+        <h1>How 2D Animation Works</h1>
+    </div>
+    </div>
+
+    <div class="hl2">
+        <div class="hl3">
+            <img src="images/how1.jpg">
+        </div>
+        <div class="hl4">
+            <h3>2D animation started in the early 1900s with hand-drawn frames. Disney and Warner Bros popularized it in
+                cartoons. With computers, digital 2D animation became faster and more efficient.</h3>
+        </div>
+    </div>
+    </div>
+
+    <div class="hl7">
+        <h1>Types of 2D Animation</h1>
+    </div>
+    </div>
+
+
+    <div class="box0">
+        <div class="box">
+            <img src="images/tra1.jpg" alt="">
+            <h2>Traditional Animation</h2>
+            <h3>Example: Purane Disney cartoons.</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/cut.jpg" alt="">
+            <h2>Cut-Out Animation</h2>
+            <h3>Example: Early episodes of South Park</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/ba1.jpg" alt="">
+            <h2>Stop Motion (2D Style)</h2>
+            <h3>Example: Paper animation projects.</h3>
+        </div>
+    </div>
+
+    <div class="hl8">
+        <h1>Tools & Software</h1>
+    </div>
+    </div>
+
+    <div class="box0">
+        <div class="box">
+            <img src="images/aotm2.jpg" alt="">
+            <h2>Lorem ipsum .</h2>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/aotm2.jpg" alt="">
+            <h2>Lorem ipsum .</h2>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/aotm2.jpg" alt="">
+            <h2>Lorem ipsum.</h2>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
+    </div>
+
+
+
+    <div class="hl9">
+        <h1>Advantages of 2D Animation</h1>
+    </div>
+    </div>
+
+    <div class="hl10">
+        <div class="hl11">
+            <img src="images/aotm2.jpg">
+            <h5>hello</h5>
+        </div>
+
+
+        <div class="hl11">
+            <img src="images/aotm2.jpg">
+            <h5>hello</h5>
+        </div>
+
+        <div class="hl11">
+            <img src="images/aotm2.jpg">
+            <h5>hello</h5>
+        </div>
+
+        <div class="hl11">
+            <img src="images/aotm2.jpg">
+            <h5>hello</h5>
+        </div>
+    </div>
+
+    <div class="hl12">
+        <h1>Disadvantages of 2D Animation</h1>
+    </div>
+    </div>
+
+
+    <div class="hl13">
+        <h1>2D animation looks less realistic compared to 3D animation.</h1>
+        <br>
+        <hr>
+        <h1>Creating smooth animations can take a lot of time and effort.</h1>
+        <br>
+        <hr>
+        <h1>Complex movements are harder to show realistically.</h1>
+        <br>
+        <hr>
+    </div>
+    </div>
+
+    <div class="hl14">
+        <h1>Uses & Applications</h1>
+    </div>
+    </div>
+
+    <div class="box0">
+        <div class="box">
+            <img src="images/aotm2.jpg" alt="">
+            <h2>Lorem ipsum .</h2>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/aotm2.jpg" alt="">
+            <h2>Lorem ipsum .</h2>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/aotm2.jpg" alt="">
+            <h2>Lorem ipsum.</h2>
+            <h3>Lorem ipsum dolor sit amet.</h3>
+        </div>
+    </div>
+
+    <footer>
+
+
+        <div class="hl15">
+            <div class="hl16">
+                <h1>animation world</h1>
+                <hr>
+                <h3>An educational website to learn animation types, principles and<br> modern techniques in an easy and
+                    visual way.</h3>
+            </div>
+
+            <div class="hl16">
+                <h1>Quick Links</h1>
+                <hr>
+                <p>Home</p>
+                <p>2D Animation</p>
+                <p>3D Animation</p>
+                <p>Stop Motion</p>
+                <p>VFX</p>
+            </div>
+
+
+            <div class="hl16">
+                <h1>contact</h1>
+                <hr>
+                <p>📧 animationworld@gmail.com</p>
+
+                <p>📞 +91 87092 42599</p>
+
+                <p>📍 Delhi, India</p>
+            </div>
+        </div>
+
+
+    </footer>
+
+    <script>
+
+        window.addEventListener("scroll", function () {
+            var a = (scrollY / (document.body.scrollHeight - innerHeight)) * 100;
+            document.querySelector(".progress-bar").style.width = a + "%";
+        })
+    </script>
+
+    <script>
+
+        var cursor = document.querySelector(".cursor")
+
+        document.addEventListener("mousemove", function (e) {
+            cursor.style.left = e.pageX + "px"
+            cursor.style.top = e.pageY + "px"
+        })
+
+
+    </script>
+
+    <script>
+
+
+        var btn = document.getElementById("btn")
+
+        var menu = document.getElementById("menu")
+
+        btn.onclick = function () {
+
+            menu.classList.toggle("show")
+        }
+    </script>
+
+    <script>
+        var btn = document.getElementById("topBtn")
+
+        window.onscroll = function () {
+            if (window.scrollY > 200) {
+                btn.style.display = "block"
+            }
+            else {
+                btn.style.display = "none"
+            }
+        }
+
+        btn.onclick = function () {
+            window.scroll({
+                top: 0,
+                behavior: "smooth"
+            })
+        }
+    </script>
+
+    <script>
+        var b = document.getElementById("system")
+
+        b.onclick = function () {
+            document.body.classList.toggle("dark")
+
+            if (document.body.classList.contains("dark")) {
+                b.innerHTML = "☾"
+            }
+            else {
+                b.innerHTML = "☀︎"
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
